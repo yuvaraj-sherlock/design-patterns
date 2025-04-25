@@ -12,27 +12,18 @@ import java.util.Map;
 
 @Service
 public class PaymentServiceFactory {
-   // private final Map<PaymentMode, PaymentService> paymentServiceMap = new EnumMap<>(PaymentMode.class);
+    private final ApplicationContext applicationContext;
 
     @Autowired
-    private ApplicationContext applicationContext;
+    public PaymentServiceFactory(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
-    /*@Autowired
-    public PaymentServiceFactory(Map<String, PaymentService> beanMap) {
-        // Map string keys to enum safely
-        for (PaymentMode mode : PaymentMode.values()) {
-            if (beanMap.containsKey(mode.name())) {
-                paymentServiceMap.put(mode, beanMap.get(mode.name()));
-            }
-        }
-    }*/
-
-    public PaymentService getPaymentService(PaymentMode paymentMode) {
-       // return paymentServiceMap.get(paymentMode);
+    public PaymentService getPaymentService(PaymentMode mode) {
         try {
-            return applicationContext.getBean(paymentMode.name(), PaymentService.class);
-        } catch (BeansException e) {
-            return null; // Or throw custom exception for invalid payment mode
+            return applicationContext.getBean(mode.name(), PaymentService.class);
+        } catch (BeansException ex) {
+            throw new IllegalArgumentException("Invalid payment mode: " + mode);
         }
     }
 }
