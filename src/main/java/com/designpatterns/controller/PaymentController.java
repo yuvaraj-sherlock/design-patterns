@@ -24,4 +24,10 @@ public class PaymentController {
         paymentService.pay(amount);
         return ResponseEntity.ok("Payment successful using " + mode);
     }
+
+    @GetMapping("/{path}")
+    public ResponseEntity<String> pathParamCheck(@PathVariable String path,
+                                                 @RequestParam String param) {
+        return ResponseEntity.ok("PathParam: " + path + ", Param: " + param);
+    }
 }
