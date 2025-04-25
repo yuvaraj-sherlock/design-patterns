@@ -7,7 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DesignpatternsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DesignpatternsApplication.class, args);
+		SpringApplication app = new SpringApplication(DesignpatternsApplication.class);
+		app.setBanner((environment, sourceClass, out) -> {
+			out.println("=== Welcome to My Custom Spring Boot App ===");
+		});
+		app.run(args);
 	}
 
 }
