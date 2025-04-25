@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component("UPI")
 public class UpiPaymentService implements PaymentService{
     @Override
-    public String pay(double amount) {
-        return "Payment "+amount+" paid using UPI!!";
+    public void pay(double amount) {
+        //return "Payment "+amount+" paid using UPI!!";
     }
 }

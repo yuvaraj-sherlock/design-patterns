@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Primary
 public class CredicardPaymentService implements PaymentService{
     @Override
-    public String pay(double amount) {
-        return "Payment "+amount+" paid using CreditCard!!";
+    public void pay(double amount) {
+       // return "Payment "+amount+" paid using CreditCard!!";
     }
 }

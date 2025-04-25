@@ -2,6 +2,7 @@ package com.designpatterns.controller;
 
 import com.designpatterns.configUtil.PaymentServiceFactory;
 import com.designpatterns.service.PaymentService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,12 +14,13 @@ public class PaymentController {
         this.paymentServiceFactory = paymentServiceFactory;
     }
 
-    @GetMapping
-    public String pay(@RequestParam double amount, @RequestParam String mode){
+    @PostMapping
+    public ResponseEntity<String> pay(@RequestParam double amount, @RequestParam String mode){
         PaymentService paymentService = paymentServiceFactory.getPaymentService(mode);
         if (paymentService == null) {
-            return "Invalid payment mode!";
+            return ResponseEntity.badRequest().body("Invalid payment mode!");
         }
-        return paymentService.pay(amount);
+        paymentService.pay(amount);
+        return ResponseEntity.ok("Payment successful using " + mode);
     }
 }
