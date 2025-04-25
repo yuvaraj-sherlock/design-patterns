@@ -3,7 +3,7 @@ package com.designpatterns.service;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-@Component("CreditCard")
+@Component("CREDIT_CARD")
 @Primary
 public class CredicardPaymentService implements PaymentService{
     @Override

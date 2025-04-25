@@ -2,7 +2,7 @@ package com.designpatterns.service;
 
 import org.springframework.stereotype.Component;
 
-@Component("Cash")
+@Component("CASH")
 public class CashPaymentService implements PaymentService{
     @Override
     public void pay(double amount) {
